@@ -72,11 +72,30 @@ To read from this register, we need to create a `Read`-type message to this regi
 - After the last step, you should see a message from the register `FirmwareVersionHigh`. However, we have yet to parse the message payload to see the actual firmware version.
 - Mimicking the previous steps, we will start by learning how to parse the payload using the low-level API:
   - Add a `Parse(Bonsai.Harp)`. This operator will not only parse the Harp Message payload to the specified type but also filter out messages that do not match the specified parsing pattern (e.g. other registers).
-  - Assign the properties as in 4.1.1
-  - Repeat 4.1.2 but now check the value of the firmware version.
+  - Assign the properties as in 4.1
+  - Repeat 4.2 but now check the value of the firmware version.
 - Once again, we can also use the abstracted API to simplify the parsing process:
   - Add a `Parse(Bonsai.Harp)` operator
   - Select `FirmwareVersionHigh` under `Payload`
   - Re-run the previous example using this operator instead.
 
 
+## 5- Parsing AnalogData events
+
+# TODO - Circuit diagram with a photodiode or pot?
+
+
+In 3, we mentioned the AnalogData as a high-frequency event that carries the ADC readings. We can easily parse the payload of this register following the logic in 4.3. However, it is important to note that, as opposed to `FirmwareVersionHigh` which belongs to the core registers common across all Harp devices, `AnalogData` is a Harp Behavior specific register. As result, we must use the `Harp.Behavior` package to parse this register:
+
+- Subscribe to the `BehaviorEvents` stream.
+- Add a `Parse(Harp.Behavior)` operator
+- Set `Register` to `AnalogData`
+- The output type of `Parse` will now change to a structure with the fields packed in this register.
+- To select the data from channel 0, right-click on the `Parse` operator and select `AnalogInput0`.
+- Run Bonsai and check the output of the `AnalogInput0` stream.
+
+You will notice that despite the timestamp present in the message, the `AnalogInput0` output stream is not timestamped. This is because the `Parse` operator does not propagate the timestamp from the original message by default. In cases where the timestamp is necessary, for each `Payload` we have a corresponding `TimestampedPayloads` that can be selected in the `Parse` operator. This will add an extra field to the structure, `Seconds`, that contains the parsed timestamp of the original message:
+
+- Modify the `Register` property to `TimestampedAnalogData`
+- Select the `AnalogInput0` and `Seconds` members from the output structure.
+- Optionally pair the elements into a `Tuple` using the `Zip` operator.
