@@ -73,4 +73,10 @@ To read from this register, we need to create a `Read`-type message to this regi
 
 - After the last step, you should see a message from the register `FirmwareVersionHigh`. However, we have yet to parse the message payload to see the actual firmware version.
 - Mimicking the previous steps, we will start by learning how to parse the payload using the low-level API:
-  - Add a `ParseMessage(Bonsai.Harp)`
+  - Add a `Parse(Bonsai.Harp)`. This operator will not only parse the Harp Message payload to the specified type but also filter out messages that do not match the specified parsing pattern (e.g. other registers).
+  - Assign the properties as in 4.1.1
+  - Repeat 4.1.2 but now check the value of the firmware version.
+- Once again, we can also use the abstracted API to simplify the parsing process:
+  - Add a `Parse(Bonsai.Harp)` operator
+  - Select `FirmwareVersionHigh` under `Payload`
+  - Re-run the previous example using this operator instead.
