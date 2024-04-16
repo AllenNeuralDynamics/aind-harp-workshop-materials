@@ -156,7 +156,7 @@ While the `AnalogData` is a register that sends periodic message (~1kHz), other 
 
 ## 7- Sending commands to the device
 
-## 7.1 - Change the state of the digital output line
+### 7.1 - Change the state of the digital output line
 
 The Harp Behavior device has a set of 4 registers that can be used to change the state of the digital output lines: `OutputSet`, `OutputClear`, `OutputToggle` and `OutputState`. For the sake of the example, we will use the `OutputSet` and `OutputClear` registers. These registers are used to set or clear the state of a specific line, respectively. Similarly to the `DigitalInputState`, the value of this register also multiplexes the value of all the lines. First, we will set the state of line `DO3` to `High`:
 
@@ -172,7 +172,7 @@ The Harp Behavior device has a set of 4 registers that can be used to change the
 :::
 
 
-## 7.2 - Changing the pulse mode of a digital output line
+### 7.2 - Changing the pulse mode of a digital output line
 
 In most harp devices you will find registers dedicated for configuration instead of "direct control". One example is the `OutputPulseEnable` register in the Harp Behavior board. This register is used when the user wants to pulse the line for a specific, pre-programmed, duration (e.g. opening a solenoid valve for exactly 10ms). To use this feature:
 
@@ -193,7 +193,7 @@ In most harp devices you will find registers dedicated for configuration instead
 > **_NOTE:_** The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
 
 
-## 7.3 - Getting the timestamp of a Write message
+### 7.3 - Getting the timestamp of a Write message
 
 
 While we know that the state of the line `DO3` is changing, we do not have access to WHEN this change is taking place. Remember that for each `Write` message issued by the computer as a command, `Write` message reply should be sent back from the device. We can thus follow a similar logic to 6.1 to get the timestamp of the reply message:
@@ -213,7 +213,7 @@ While we know that the state of the line `DO3` is changing, we do not have acces
 
 
 
-## 7.4 - Closing the loop with PWM
+### 7.4 - Closing the loop with PWM
 
 Building on top of 5, this exercise will walk you through how to achieve "close-loop" control between the duty-cycle of a closed-loop signal and the value of an ADC channel.
 
@@ -234,7 +234,7 @@ Building on top of 5, this exercise will walk you through how to achieve "close-
 :::
 
 
-## 7.5 - Resetting the device
+### 7.5 - Resetting the device
 
 In some cases, you may want to reset the device to its initial known state. The Harp protocol defines a core register that can be used to achieve this behavior:
 
@@ -249,7 +249,7 @@ In some cases, you may want to reset the device to its initial known state. The 
 :::
 
 
-## 7.6 - Benchmarking round-trip time
+### 7.6 - Benchmarking round-trip time
 
 As a final example, we will show how to measure the [round-trip time](https://en.wikipedia.org/wiki/Round-trip_delay) of a message sent to the device. This is useful to understand the latency of the closed-loop system and to ensure that the system is running as expected. Conceptually, we will send a message to set the state of a digital output line, wait for the reply (t1) message, and invert the state of the line once this message is received, once again waiting for the second reply (t2). By calculating t2-t1, we can calculate the time it takes for a message to be sent from the device, processed by the computer and received again by the device:
 
