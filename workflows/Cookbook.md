@@ -173,4 +173,21 @@ While we know that the state of the line `DO3` is changing, we do not have acces
 > **_NOTE:_** More documentation on how to manipulate timestamped messages can be found [here](https://harp-tech.org/articles/message-manipulation.html)
 
 
+## 7.4 - Closing the loop with PWM
+
+Building on top of 5, this exercise will walk you through how to achieve "close-loop" control between the duty-cycle of a closed-loop signal and the value of an ADC channel.
+
+- Configure `DO3` to be a PWM output by setting replicating 7.2 but instead of using the `Pulse<Pin>Payload`, configure the initial frequency (e.g. 500Hz) and duty cycle (e.g. 50%) of the PWM by using `PwmFrequency<Pin>Payload` and `PwmDutyCycle<Pin>Payload`.
+- Add a `KeyDown(Windows.Input)` operator and set the `Filter` property to a specific key (e.g. `Up`).
+- Add a `CreateMessage(Harp.Behavior)` operator in after the `KeyDown` operator, and set it to `PwmStart` and match the value to the pin you are using (e.g. `DO3`).
+- Repeat the previous steps but now set the `PwmStop` register to stop the PWM signal when the key `Down` is pressed.
+- Verify that you can start and stop the PWM signal.
+
+- Resume the pattern in 5. and publish the value of the ADC channel 0 via a `PublishSubject` named `Photodiode`.
+- Add a `Slice` operator to down-sample the signal to a more manageable update frequency (e.g. 100Hz) by setting the `Step` property to `10`. This is advised since the Behavior board is only spec'ed to run commands at 1kHz. Different hardware / functionality may require different sampling rates, so be sure to run tests before deploying the system.
+- Subscribe to the `Photodiode` stream and add a `Rescale` operator. According to the [documentation of the Harp Behavior board](https://harp-tech.org/api/Harp.Behavior.html#registers), the duty cycle register only accepts values between 1 and 99. As a result, we need to rescale the value of the ADC channel to match this range. Set the `Max` and `Min` properties to the maximum and minimum values of the Photodiode signal. Set `RangeMax` and `RangeMin` to 99 and 1, respectively. Finally, to ensure values are "clipped" to the range, set `RescaleType` to `Clamp`.
+- Finally, add a `Format(Harp.Behavior)` operator after the `Rescale` node. `Format`, similarly to `CreateMessage` is a Harp message constructor. It differs from `CreateMessage` in that it uses the incoming sequence (in this case the rescaled value of the ADC channel) to populate the message, instead of setting it as a property.
+- Add a `MulticastSubject` operator to send the message to the device.
+
+
 ## 8- Logging
