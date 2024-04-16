@@ -1,4 +1,18 @@
 - name: Harp Workshop
   items:
-  - name: Tutorial
-    href: Tutorial.md
+  - name: Getting Started
+    href: GettingStarted.md
+  - name: Connecting to the Device
+    href: ConnectingToDevice.md
+  - name: Filtering Messages
+    href: FilteringMessages.md
+  - name: Core Registers
+    href: CoreRegisters.md
+  - name: Parsing ADC Events
+    href: ParsingAnalogEvents.md
+  - name: Parsing Digital Inputs Events
+    href: ParsingDigitalInputEvents.md
+  - name: Sending Commands to the Device
+    href: Commands.md
+  - name: Logging
+    href: Logging.md
