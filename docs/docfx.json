@@ -26,12 +26,6 @@
           "images/**",
           "workflows/**"
         ]
-      },
-      {
-        "files": [
-          "harp_devices_src/harp.device.*/notes/images/*.png",
-          "harp_devices_src/harp.device.*/notes/images/*.jpg"
-        ]
       }
     ],
     "overwrite": [
