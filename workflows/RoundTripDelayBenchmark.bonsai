@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.8.1"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:harp="clr-namespace:Bonsai.Harp;assembly=Bonsai.Harp"
+                 xmlns:beh="clr-namespace:Harp.Behavior;assembly=Harp.Behavior"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:dsp="clr-namespace:Bonsai.Dsp;assembly=Bonsai.Dsp"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
+        <rx:Name>BehaviorCommands</rx:Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="harp:Device">
+          <harp:OperationMode>Active</harp:OperationMode>
+          <harp:OperationLed>On</harp:OperationLed>
+          <harp:DumpRegisters>true</harp:DumpRegisters>
+          <harp:VisualIndicators>On</harp:VisualIndicators>
+          <harp:Heartbeat>Disabled</harp:Heartbeat>
+          <harp:IgnoreErrors>false</harp:IgnoreErrors>
+          <harp:PortName>COM3</harp:PortName>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>BehaviorEvents</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>BehaviorEvents</Name>
+      </Expression>
+      <Expression xsi:type="beh:Parse">
+        <harp:Register xsi:type="beh:TimestampedDigitalInputState" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Value</Selector>
+      </Expression>
+      <Expression xsi:type="BitwiseAnd">
+        <Operand xsi:type="WorkflowProperty" TypeArguments="beh:DigitalInputs">
+          <Value>DI3</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="GreaterThan">
+        <Operand xsi:type="WorkflowProperty" TypeArguments="sys:Byte">
+          <Value>0</Value>
+        </Operand>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:DistinctUntilChanged" />
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>DI3State</Name>
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Seconds</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:WithLatestFrom" />
+      </Expression>
+      <Expression xsi:type="MemberSelector">
+        <Selector>Item2</Selector>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="dsp:Difference">
+          <dsp:Order>1</dsp:Order>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>DI3State</Name>
+      </Expression>
+      <Expression xsi:type="rx:Condition">
+        <Name>High</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="beh:CreateMessage">
+        <harp:MessageType>Write</harp:MessageType>
+        <harp:Payload xsi:type="beh:CreateOutputClearPayload">
+          <beh:OutputClear>DO3</beh:OutputClear>
+        </harp:Payload>
+      </Expression>
+      <Expression xsi:type="BitwiseNot" />
+      <Expression xsi:type="rx:Condition">
+        <Name>Low</Name>
+        <Workflow>
+          <Nodes>
+            <Expression xsi:type="WorkflowInput">
+              <Name>Source1</Name>
+            </Expression>
+            <Expression xsi:type="WorkflowOutput" />
+          </Nodes>
+          <Edges>
+            <Edge From="0" To="1" Label="Source1" />
+          </Edges>
+        </Workflow>
+      </Expression>
+      <Expression xsi:type="beh:CreateMessage">
+        <harp:MessageType>Write</harp:MessageType>
+        <harp:Payload xsi:type="beh:CreateOutputSetPayload">
+          <beh:OutputSet>DO3</beh:OutputSet>
+        </harp:Payload>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="rx:Merge" />
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>BehaviorCommands</Name>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="4" To="10" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="7" To="8" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="9" To="11" Label="Source1" />
+      <Edge From="10" To="11" Label="Source2" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="12" To="13" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="14" To="17" Label="Source1" />
+      <Edge From="15" To="16" Label="Source1" />
+      <Edge From="16" To="20" Label="Source1" />
+      <Edge From="17" To="18" Label="Source1" />
+      <Edge From="18" To="19" Label="Source1" />
+      <Edge From="19" To="20" Label="Source2" />
+      <Edge From="20" To="21" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
