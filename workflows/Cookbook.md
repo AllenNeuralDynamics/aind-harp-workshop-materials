@@ -7,7 +7,9 @@
 
 ## 0- Install Bonsai and dependencies
 
+- Run `./bonsai/setup.cmd` to install Bonsai and its dependencies.
 - Follow these [instructions](https://harp-tech.org/articles/intro.html)
+- Documentation on most concepts covered in these exercises can be found [here](https://harp-tech.org/articles/operators.html).
 
 ## 1- Installing the Harp Behavior device API
 
@@ -153,15 +155,22 @@ In most harp devices you will find registers dedicated for configuration instead
 - Add a `MulticastSubject` operator to send the message to the device.
 - Verify you see a pulse on the line `DO3` every time you press the key `1`.
 
-The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
+> **_NOTE:_** The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
 
 
 ## 7.3 - Getting the timestamp of a Write message
 
 
-While we know that the state of the line `DO3` is changing, we do not have access to WHEN this change is taking place. However, remember that for each `Write` message issued by the computer, `Write` message should be sent back from the device.
+While we know that the state of the line `DO3` is changing, we do not have access to WHEN this change is taking place. Remember that for each `Write` message issued by the computer as a command, `Write` message reply should be sent back from the device. We can thus follow a similar logic to 6.1 to get the timestamp of the reply message:
 
+- Subscribe to the `BehaviorEvents` stream.
+- Add a `Parse(Harp.Behavior)` operator and set the `Register` to `TimestampedOutputSet`.
+- Expose the `Value` and `Seconds` members of the output structure.
+- Add a `BitwiseAnd(DO3)` and a `GreaterThan(0)` operator, after `Value` to extract the state of the line `DO3`.
+- Add a `Condition` operator to only allow `True` values to pass through (since we are only interested in changes of `DO3`).
+- Recover the initial timestamp of the message by using a `WithLatestFrom` operator connecting the output of `Condition` and `Seconds`.
 
+> **_NOTE:_** More documentation on how to manipulate timestamped messages can be found [here](https://harp-tech.org/articles/message-manipulation.html)
 
 
 ## 8- Logging
