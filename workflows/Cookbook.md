@@ -106,7 +106,7 @@ While the `AnalogData` is a register that sends periodic message (~1kHz), other 
 
 - Subscribe to the `BehaviorEvents` stream.
 - Add a `Parse(Harp.Behavior)` operator
-- Set `Register` to `DigitalInputState` (You can also use `TimestampedDigitalInputState` if you need the timestamp)
+- Set `Register` to `DigitalInputStatePayload` (You can also use `TimestampedDigitalInputState` if you need the timestamp)
 - The output type of `Parse` will now change and propagate the state of all lines according to the demultiplexing logic of the register:
 
 ```yml
@@ -128,7 +128,40 @@ While the `AnalogData` is a register that sends periodic message (~1kHz), other 
 
 ## 7- Sending commands to the device
 
-## 7.1
+## 7.1 - Change the state of the digital output line
+
+The Harp Behavior device has a set of 4 registers that can be used to change the state of the digital output lines: `OutputSet`, `OutputClear`, `OutputToggle` and `OutputState`. For the sake of the example, we will use the `OutputSet` and `OutputClear` registers. These registers are used to set or clear the state of a specific line, respectively. Similarly to the `DigitalInputState`, the value of this register also multiplexes the value of all the lines. First, we will set the state of line `DO3` to `High`:
+
+- Add a `KeyDown(Windows.Input)` operator and set the `Filter` property to a specific key (e.g. `1`).
+- Add a `CreateMessage(Harp.Behavior)` operator in after the `KeyDown` operator.
+- Select `OutputSetPayload` under `Payload`. Make sure the `MessageType` is set to `Write` since we will know be asking the device to change the value of one of its registers.
+- In the property `OutputSet`, select the line you want to turn on (e.g. `DO3`).
+- Replicate the previous steps to clear the state of the line `DO3` by using the `OutputClearPayload` instead, and the `KeyDown` operator with a different key (e.g. `2`).
+- Verify that you can turn On and Off the line `DO3` by pressing the keys `1` and `2`, respectively.
+
+## 7.2 - Changing the pulse mode of a digital output line
+
+In most harp devices you will find registers dedicated for configuration instead of "direct control". One example is the `OutputPulseEnable` register in the Harp Behavior board. This register is used when the user wants to pulse the line for a specific, pre-programmed, duration (e.g. opening a solenoid valve for exactly 10ms). To use this feature:
+
+- Subscribe to the `BehaviorEvents` stream.
+- Add a `Take` operator.
+- Add `CreateMessage(Harp.Behavior)` operator in after the `Take` operator.
+- Select `OutputPulseEnablePayload` under `Payload`. Make sure the `MessageType` is set to `Write`.
+- Select the line you want to pulse (e.g. `DO3`), and add a `MulticastSubject` operator to send the message to the device.
+- Add another `CreateMessage(Harp.Behavior)` operator in after the `MulticastSubject` operator.
+- Select `Pulse<Pin>Payload`, and set the value to the number of milliseconds you want this line to be high for on each pulse.
+- Add a `MulticastSubject` operator to send the message to the device.
+- Verify you see a pulse on the line `DO3` every time you press the key `1`.
+
+The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
+
+
+## 7.3 - Getting the timestamp of a Write message
+
+
+While we know that the state of the line `DO3` is changing, we do not have access to WHEN this change is taking place. However, remember that for each `Write` message issued by the computer, `Write` message should be sent back from the device.
+
+
 
 
 ## 8- Logging
