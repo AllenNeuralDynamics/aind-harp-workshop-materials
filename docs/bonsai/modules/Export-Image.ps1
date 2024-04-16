@@ -1,7 +1,7 @@
 param(
     [string[]]$libPath,
     [string]$workflowPath=".\workflows",
-    [string]$bootstrapperPath="..\.bonsai\Bonsai.exe"
+    [string]$bootstrapperPath="..\bonsai\Bonsai.exe"
 )
 
 function Export-Svg([string[]]$libPath, [string]$svgFileName, [string]$workflowFile)
