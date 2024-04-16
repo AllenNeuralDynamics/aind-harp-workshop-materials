@@ -276,7 +276,8 @@ Now that we have the state of the input line, we need a way to close-loop it wit
 
 > **_NOTE:_** The timestamps reported by Harp can be independently validated by probing the digital output line and calculating the time between each toggle. We have done this exercise in the past and found that the timestamps closely match.
 
-![image](./../Assets/RoundTripDelayBenchmark.png)
+![image](./images/Assets/RoundTripDelayBenchmark.png)
+
 |   Source   |Mean[μs]|Std[μs]|Min[μs]|Max[μs]|1%[μs]|99%[μs]|
 |------------|-------:|------:|------:|------:|-----:|------:|
 |Oscilloscope|  1972.1|  174.1|  985.0| 4002.0| 991.0| 2019.0|
