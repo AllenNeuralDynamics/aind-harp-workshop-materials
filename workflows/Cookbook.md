@@ -184,7 +184,7 @@ Building on top of 5, this exercise will walk you through how to achieve "close-
 - Finally, add a `Format(Harp.Behavior)` operator after the `Rescale` node. `Format`, similarly to `CreateMessage` is a Harp message constructor. It differs from `CreateMessage` in that it uses the incoming sequence (in this case the rescaled value of the ADC channel) to populate the message, instead of setting it as a property.
 - Add a `MulticastSubject` operator to send the message to the device.
 
-## 7.6 - Resetting the device
+## 7.5 - Resetting the device
 
 In some cases, you may want to reset the device to its initial known state. The Harp protocol defines a core register that can be used to achieve this behavior:
 
@@ -194,7 +194,7 @@ In some cases, you may want to reset the device to its initial known state. The 
 - Add a `MulticastSubject` operator to send the message to the device.
 - Run Bonsai. The board's led should briefly flash to indicate that the reset was successful.
 
-## 7.5 - Benchmarking round-trip time
+## 7.6 - Benchmarking round-trip time
 
 As a final example, we will show how to measure the [round-trip time](https://en.wikipedia.org/wiki/Round-trip_delay) of a message sent to the device. This is useful to understand the latency of the closed-loop system and to ensure that the system is running as expected. Conceptually, we will send a message to set the state of a digital output line, wait for the reply (t1) message, and invert the state of the line once this message is received, once again waiting for the second reply (t2). By calculating t2-t1, we can calculate the time it takes for a message to be sent from the device, processed by the computer and received again by the device:
 
