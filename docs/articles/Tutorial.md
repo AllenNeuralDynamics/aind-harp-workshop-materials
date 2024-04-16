@@ -67,7 +67,7 @@ To read from this register, we need to create a `Read`-type message to this regi
 - Run Bonsai and click `1` to trigger the reading of the firmware version. What do you see in the filtered device output?
 
 :::workflow
-![CreateApiMessageFirmwareHigh](~/workflows/CreateApiMessageFirmwareHigh.bonsai)
+![CreateRawMessageFirmwareHigh](~/workflows/CreateRawMessageFirmwareHigh.bonsai)
 :::
 
 
