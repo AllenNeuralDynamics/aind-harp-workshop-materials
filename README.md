@@ -1,7 +1,6 @@
+# AIND Harp Workshop
 
-
-
-
+This repository contains the code and examples for the AIND Harp Workshop.
 
 ## Getting Started
 
