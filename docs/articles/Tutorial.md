@@ -22,6 +22,10 @@ Each Harp device has a unique Bonsai API that is used to interact with the devic
 - Add a `BehaviorSubject` source, and name it `BehaviorCommands`. A [Source Subject](https://bonsai-rx.org/docs/articles/subjects.html#source-subjects) of a given type can be added by right-clicking an operator of that type (e.g.`Device`) and selecting `Create Source` -> `BehaviorSubject`.
 - Run Bonsai and check check the output from the device.
 
+:::workflow
+![ConnectionPattern](~/workflows/ConnectionPattern.bonsai)
+:::
+
 ## 3- Filtering messages
 
 - As you probably noticed in 2- the device is sending a lot of messages. This is because this specific board has a high-frequency period event associated with the ADC readings. We will come back to this point later, but for now, we will filter out these messages so we can look at other, lower-frequency messages from the device.
@@ -32,6 +36,11 @@ Each Harp device has a unique Bonsai API that is used to interact with the devic
 - Check the output of `FilterRegister`
 
 > **_NOTE:_** Sometimes it may be easier to exclude registers using the generic API rather the device-specific one. This can be done using the `FilterRegister(Bonsai.Harp)` operator from the `Harp` package. This operator allows you to filter messages based on the register address number (e.g. `Address=44`), but it is otherwise interchangeable with the previous operator.
+
+:::workflow
+![FilteringMessages](~/workflows/FilteringMessages.bonsai)
+:::
+
 
 ## 4- Interacting with Core Registers
 
@@ -57,12 +66,23 @@ To read from this register, we need to create a `Read`-type message to this regi
 - Add a `MulticastSubject` operator after the `CreateMessage` operator.
 - Run Bonsai and click `1` to trigger the reading of the firmware version. What do you see in the filtered device output?
 
+:::workflow
+![CreateApiMessageFirmwareHigh](~/workflows/CreateApiMessageFirmwareHigh.bonsai)
+:::
+
+
 ### 4.2 - Reading the firmware version using the abstracted API
 
 - The ability to manipulator "raw" Harp messages is very useful for debugging new devices. However, for most applications, we will want to use the abstracted API instead of having to know the register specification as in the previous point:
 - Add a `CreateMessage(Bonsai.Harp)` operator
 - Select `FirmwareVersionHigh` under `Payload`. This change will automatically populate the `Address` and `PayloadType` to match the select register. You will still need to assign a `MessageType`, in this case, `Read`.
 - Re-run the previous example using this operator instead.
+
+
+:::workflow
+![CreateApiMessageFirmwareHigh](~/workflows/CreateApiMessageFirmwareHigh.bonsai)
+:::
+
 
 ### 4.3- Parsing the message payload
 
@@ -76,6 +96,9 @@ To read from this register, we need to create a `Read`-type message to this regi
   - Select `FirmwareVersionHigh` under `Payload`
   - Re-run the previous example using this operator instead.
 
+:::workflow
+![ParseMessageFirmwareHigh](~/workflows/ParseMessageFirmwareHigh.bonsai)
+:::
 
 ## 5- Parsing AnalogData events
 
@@ -97,6 +120,9 @@ You will notice that despite the timestamp present in the message, the `AnalogIn
 - Select the `AnalogInput0` and `Seconds` members from the output structure.
 - Optionally pair the elements into a `Tuple` using the `Zip` operator.
 
+:::workflow
+![ParseAnalogData](~/workflows/ParseAnalogData.bonsai)
+:::
 ## 6 - Parsing a DigitalInput events
 
 While the `AnalogData` is a register that sends periodic message (~1kHz), other messages are triggered by non-period events. One example is how the digital input lines. In this board, register `DigitalInputState` emits an event when any of the digital input lines change state. It is important to note that similar to other devices (e.g. Open-Ephys acquisition boards), the state of all lines is multiplexed into a single integer (`U8`), where each bit represents that state of each line. As a result, depending on the exact transformation you want to apply to the data, you may need to use the `Bitwise` operators to extract the state of each line:
@@ -120,6 +146,11 @@ While the `AnalogData` is a register that sends periodic message (~1kHz), other 
 - Because the state of `DigitalInputState` changes when ANY of the lines change, we tend to use the `DistinctUntilChanged` to only propagate the message if the state of the line of interest changes.
 - Finally, to trigger a certain behavior on a specific edge, we add a `Condition` operator to only allow `True` values to pass through. The behavior can easily bit inverted by adding a `BitWiseNot` operator before, or inside, the condition operator.
 
+:::workflow
+![ParseDigitalInputState](~/workflows/ParseDigitalInputState.bonsai)
+:::
+
+
 > **_NOTE:_** In most situations listening to the `Event` propagated by the register is sufficient, and prefered, to keep track of the full state history of the device. Alternatively, one could also switch to a "pooling"-like strategy by using a `Timer` operator that periodically asks for a `Read` from the register.
 
 
@@ -136,6 +167,11 @@ The Harp Behavior device has a set of 4 registers that can be used to change the
 - Replicate the previous steps to clear the state of the line `DO3` by using the `OutputClearPayload` instead, and the `KeyDown` operator with a different key (e.g. `2`).
 - Verify that you can turn On and Off the line `DO3` by pressing the keys `1` and `2`, respectively.
 
+:::workflow
+![DigitalOutput](~/workflows/DigitalOutput.bonsai)
+:::
+
+
 ## 7.2 - Changing the pulse mode of a digital output line
 
 In most harp devices you will find registers dedicated for configuration instead of "direct control". One example is the `OutputPulseEnable` register in the Harp Behavior board. This register is used when the user wants to pulse the line for a specific, pre-programmed, duration (e.g. opening a solenoid valve for exactly 10ms). To use this feature:
@@ -149,6 +185,10 @@ In most harp devices you will find registers dedicated for configuration instead
 - Select `Pulse<Pin>Payload`, and set the value to the number of milliseconds you want this line to be high for on each pulse.
 - Add a `MulticastSubject` operator to send the message to the device.
 - Verify you see a pulse on the line `DO3` every time you press the key `1`.
+
+:::workflow
+![OutputPulseEnable](~/workflows/OutputPulseEnable.bonsai)
+:::
 
 > **_NOTE:_** The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
 
@@ -165,7 +205,12 @@ While we know that the state of the line `DO3` is changing, we do not have acces
 - Add a `Condition` operator to only allow `True` values to pass through (since we are only interested in changes of `DO3`).
 - Recover the initial timestamp of the message by using a `WithLatestFrom` operator connecting the output of `Condition` and `Seconds`.
 
+:::workflow
+![ParseDigitalOutputTimestamped](~/workflows/ParseDigitalOutputTimestamped.bonsai)
+:::
+
 > **_NOTE:_** More documentation on how to manipulate timestamped messages can be found [here](https://harp-tech.org/articles/message-manipulation.html)
+
 
 
 ## 7.4 - Closing the loop with PWM
@@ -184,6 +229,11 @@ Building on top of 5, this exercise will walk you through how to achieve "close-
 - Finally, add a `Format(Harp.Behavior)` operator after the `Rescale` node. `Format`, similarly to `CreateMessage` is a Harp message constructor. It differs from `CreateMessage` in that it uses the incoming sequence (in this case the rescaled value of the ADC channel) to populate the message, instead of setting it as a property.
 - Add a `MulticastSubject` operator to send the message to the device.
 
+:::workflow
+![AdcToPwm](~/workflows/AdcToPwm.bonsai)
+:::
+
+
 ## 7.5 - Resetting the device
 
 In some cases, you may want to reset the device to its initial known state. The Harp protocol defines a core register that can be used to achieve this behavior:
@@ -193,6 +243,11 @@ In some cases, you may want to reset the device to its initial known state. The 
 - Select `ResetDevicePayload` in `Payload`, and `RestoreDefault` as the value of the payload.
 - Add a `MulticastSubject` operator to send the message to the device.
 - Run Bonsai. The board's led should briefly flash to indicate that the reset was successful.
+
+:::workflow
+![ResetDevice](~/workflows/ResetDevice.bonsai)
+:::
+
 
 ## 7.6 - Benchmarking round-trip time
 
@@ -213,6 +268,10 @@ Now that we have the state of the input line, we need a way to close-loop it wit
 - To the second branch, add a `BitWiseNot` followed by a `Condition` operator to take care of the case where the state of the input line is `Low`. Add a `CreateMessage(Harp.Behavior)` operator and set it to `OutputSetPayload` to turn on the line `DO3`.
 - Join the two branches with a `Merge` operator, and propagate the message to the device using a `MulticastSubject`.
 - Run the workflow and check the output of the `Difference` stream.
+
+:::workflow
+![RoundTripDelayBenchmark](~/workflows/RoundTripDelayBenchmark.bonsai)
+:::
 
 
 > **_NOTE:_** The timestamps reported by Harp can be independently validated by probing the digital output line and calculating the time between each toggle. We have done this exercise in the past and found that the timestamps closely match.

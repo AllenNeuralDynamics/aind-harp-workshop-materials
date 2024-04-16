@@ -7,7 +7,7 @@
   <Workflow>
     <Nodes>
       <Expression xsi:type="rx:BehaviorSubject" TypeArguments="harp:HarpMessage">
-        <rx:Name>Commands</rx:Name>
+        <rx:Name>BehaviorCommands</rx:Name>
       </Expression>
       <Expression xsi:type="Combinator">
         <Combinator xsi:type="harp:Device">
