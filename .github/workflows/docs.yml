@@ -16,6 +16,9 @@ jobs:
         with:
           dotnet-version: 7.x
 
+      - name: Restore dotnet tools
+        run: dotnet tool restore
+
       - name: Setup Bonsai
         working-directory: bonsai
         run: .\Setup.ps1
