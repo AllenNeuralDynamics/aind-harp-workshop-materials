@@ -8,3 +8,5 @@
 :::workflow
 ![ConnectionPattern](~/workflows/ConnectionPattern.bonsai)
 :::
+
+> **_NOTE:_** Using the device-specific `Device` operator is the recommended way to connect to a Harp device. This operator runs an additional validation step that ensures that the device you are attempting to connect to matches the interface you are trying to use. For cases where this check is not necessary, you can use the generic `Device` operator, which is available in the `Bonsai.Harp` package.
