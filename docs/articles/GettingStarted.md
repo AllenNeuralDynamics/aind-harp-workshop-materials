@@ -1,12 +1,16 @@
-# Getting Started
+# Tutorial
 
+## Getting started
+
+- Clone the [workshop repository](https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials).
 - Run `./bonsai/setup.cmd` to install Bonsai and its dependencies.
-- Follow these [instructions](https://harp-tech.org/articles/intro.html)
-- Documentation on most concepts covered in these exercises can be found [here](https://harp-tech.org/articles/operators.html).
 
-Each Harp device has a unique Bonsai API that is used to interact with the device. To install the Harp Behavior device Bonsai API:
+## More documentation
 
-- Open the Bonsai Package Manager.
-- Switch the Package Source to "nuget.org".
-- Search for `Harp.Behavior`.
-- Install the package.
+- [Harp Protocol](https://harp-tech.org/protocol/BinaryProtocol-8bit.html)
+- [Harp Device](https://harp-tech.org/protocol/Device.html)
+- [Using the Bonsai.Harp packages](https://harp-tech.org/articles/intro.html)
+- [Device technical references](https://harp-tech.org/api/Harp.Behavior.html)
+- [Python data interface](https://harp-tech.org/articles/python.html)
+- [AIND Harp devices](https://allenneuraldynamics.github.io/Bonsai.AllenNeuralDynamics/harp_devices_spec/Harp_LicketySplit.html)
+- [Q&A, community, forum](https://github.com/orgs/harp-tech/discussions)
