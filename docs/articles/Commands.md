@@ -2,13 +2,13 @@
 
 ## Change the state of the digital output line
 
-The Harp Behavior device has a set of 4 registers that can be used to change the state of the digital output lines: `OutputSet`, `OutputClear`, `OutputToggle` and `OutputState`. For the sake of the example, we will use the `OutputSet` and `OutputClear` registers. These registers are used to set or clear the state of a specific line, respectively. Similarly to the `DigitalInputState`, the value of this register also multiplexes the value of all the lines. First, we will set the state of line `DO3` to `High`:
+The Harp Behavior device has a set of four registers that can be used to control the state of the digital output lines: `OutputSet`, `OutputClear`, `OutputToggle` and `OutputState`. For simplicity, we will only use the `OutputSet` and `OutputClear` registers in this example. These registers are used to set or clear the state of a specific line, respectively. Similarly to the `DigitalInputState`, the value of this register also multiplexes the value of all the lines. First, we will set the state of line `DO3` to `High`:
 
 - Add a `KeyDown(Windows.Input)` operator and set the `Filter` property to a specific key (e.g. `1`).
 - Add a `CreateMessage(Harp.Behavior)` operator in after the `KeyDown` operator.
-- Select `OutputSetPayload` under `Payload`. Make sure the `MessageType` is set to `Write` since we will know be asking the device to change the value of one of its registers.
+- Select `OutputSetPayload` under `Payload`. Make sure the `MessageType` is set to `Write` since we will now be asking the device to change the value of one of its registers.
 - In the property `OutputSet`, select the line you want to turn on (e.g. `DO3`).
-- Replicate the previous steps to clear the state of the line `DO3` by using the `OutputClearPayload` instead, and the `KeyDown` operator with a different key (e.g. `2`).
+- Replicate the previous steps to clear (turn off) the state of the line `DO3` by using the `OutputClearPayload` instead, and the `KeyDown` operator with a different key (e.g. `2`).
 - Verify that you can turn On and Off the line `DO3` by pressing the keys `1` and `2`, respectively.
 
 :::workflow
@@ -18,14 +18,14 @@ The Harp Behavior device has a set of 4 registers that can be used to change the
 
 ## Changing the pulse mode of a digital output line
 
-In most harp devices you will find registers dedicated for configuration instead of "direct control". One example is the `OutputPulseEnable` register in the Harp Behavior board. This register is used when the user wants to pulse the line for a specific, pre-programmed, duration (e.g. opening a solenoid valve for exactly 10ms). To use this feature:
+In most Harp devices you will find registers dedicated for configuration rather than "direct control". One example is the `OutputPulseEnable` register in the Harp Behavior board. This register is used when the user wants to pulse the line for a specific, pre-programmed, duration (e.g. opening a solenoid valve for exactly 10ms). To use this feature:
 
 - Subscribe to the `BehaviorEvents` stream.
 - Add a `Take` operator.
 - Add `CreateMessage(Harp.Behavior)` operator in after the `Take` operator.
 - Select `OutputPulseEnablePayload` under `Payload`. Make sure the `MessageType` is set to `Write`.
 - Select the line you want to pulse (e.g. `DO3`), and add a `MulticastSubject` operator to send the message to the device.
-- Add another `CreateMessage(Harp.Behavior)` operator in after the `MulticastSubject` operator.
+- Add another `CreateMessage(Harp.Behavior)` operator after the `MulticastSubject` operator.
 - Select `Pulse<Pin>Payload`, and set the value to the number of milliseconds you want this line to be high for on each pulse.
 - Add a `MulticastSubject` operator to send the message to the device.
 - Verify you see a pulse on the line `DO3` every time you press the key `1`.
@@ -36,11 +36,9 @@ In most harp devices you will find registers dedicated for configuration instead
 
 > **_NOTE:_** The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
 
-
 ## Getting the timestamp of a Write message
 
-
-While we know that the state of the line `DO3` is changing, we do not have access to WHEN this change is taking place. Remember that for each `Write` message issued by the computer as a command, `Write` message reply should be sent back from the device. We can thus follow a similar logic to 6.1 to get the timestamp of the reply message:
+While we know that the state of the line `DO3` is changing, we do not have access to WHEN this change is occurring. Remember that for each `Write` message issued by the computer as a command, a `Write` message reply should be sent back from the device. To grab the timestamp of the reply message:
 
 - Subscribe to the `BehaviorEvents` stream.
 - Add a `Parse(Harp.Behavior)` operator and set the `Register` to `TimestampedOutputSet`.
@@ -55,11 +53,9 @@ While we know that the state of the line `DO3` is changing, we do not have acces
 
 > **_NOTE:_** More documentation on how to manipulate timestamped messages can be found [here](https://harp-tech.org/articles/message-manipulation.html)
 
-
-
 ## Closing the loop with PWM
 
-Building on top of the Analog Data section, this example will walk you through how to achieve "close-loop" control between the duty-cycle of a closed-loop signal and the value of an ADC channel.
+Building on top of the Analog Data section, this example will walk you through how to achieve "close-loop" control between the duty-cycle of a closed-loop signal and the value of an ADC channel. This example also highlights one of the major advantages of having a computer in the loop: the ability to easily change the behavior of the system by changing the software.
 
 - Configure `DO3` to be a PWM output by replicating the previous sections but instead of using the `Pulse<Pin>Payload`, configure the initial frequency (e.g. 500Hz) and duty cycle (e.g. 50%) of the PWM by using `PwmFrequency<Pin>Payload` and `PwmDutyCycle<Pin>Payload`.
 - Add a `KeyDown(Windows.Input)` operator and set the `Filter` property to a specific key (e.g. `Up`).
@@ -77,7 +73,6 @@ Building on top of the Analog Data section, this example will walk you through h
 ![AdcToPwm](~/workflows/AdcToPwm.bonsai)
 :::
 
-
 ## Resetting the device
 
 In some cases, you may want to reset the device to its initial known state. The Harp protocol defines a core register that can be used to achieve this behavior:
@@ -92,10 +87,9 @@ In some cases, you may want to reset the device to its initial known state. The 
 ![ResetDevice](~/workflows/ResetDevice.bonsai)
 :::
 
-
 ## Benchmarking round-trip time
 
-As a final example, we will show how to measure the [round-trip time](https://en.wikipedia.org/wiki/Round-trip_delay) of a message sent to the device. This is useful to understand the latency of the closed-loop system and to ensure that the system is running as expected. Conceptually, we will send a message to set the state of a digital output line, wait for the reply (t1) message, and invert the state of the line once this message is received, once again waiting for the second reply (t2). By calculating t2-t1, we can calculate the time it takes for a message to be sent from the device, processed by the computer and received again by the device:
+As a final example, we will show how to measure the [round-trip time](https://en.wikipedia.org/wiki/Round-trip_delay) of a message sent to the device. This is useful to understand the latency of the closed-loop system and to ensure that the system is running as expected. The idea is to send a message to set the state of a digital output line, wait for the reply (t1) message, and invert the state of the line once this message is received, once again waiting for the second, corresponding, reply (t2). By calculating t2-t1, we will have the time it takes for a message to be sent from the device, processed by the computer and received again by the device:
 
 - Connect `DO3` to `DI3` with a jumper cable.
 - Read the timestamped values from the `DI3` pin using `DigitalInputState`:
@@ -116,7 +110,6 @@ Now that we have the state of the input line, we need a way to close-loop it wit
 :::workflow
 ![RoundTripDelayBenchmark](~/workflows/RoundTripDelayBenchmark.bonsai)
 :::
-
 
 > **_NOTE:_** The timestamps reported by Harp can be independently validated by probing the digital output line and calculating the time between each toggle. We have done this exercise in the past and found that the timestamps closely match.
 
