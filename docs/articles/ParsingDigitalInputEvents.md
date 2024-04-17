@@ -1,6 +1,6 @@
 # Parsing a DigitalInput `Event`s
 
-While the `AnalogData` is a register that sends periodic message (~1kHz), other messages are triggered by non-period events. One example is how the digital input lines. In this board, register `DigitalInputState` emits an event when any of the digital input lines change state. It is important to note that similar to other devices (e.g. Open-Ephys acquisition boards), the state of all lines is multiplexed into a single integer (`U8`), where each bit represents that state of each line. As a result, depending on the exact transformation you want to apply to the data, you may need to use the `Bitwise` operators to extract the state of each line:
+While the `AnalogData` is a register that sends periodic message (~1kHz), other messages are triggered by non-period events. One example is data from the digital input lines. In the Harp Behavior board, register `DigitalInputState` emits an event when any of the digital input lines change state. It is important to note that similar to other devices (e.g. Open-Ephys acquisition boards), the state of all lines is multiplexed into a single integer (`U8`), where each bit represents the state (1/0) of each line. As a result, depending on the exact transformation you want to apply to the data, you may need to use the `Bitwise` operators to extract the state of each individual line:
 
 - Subscribe to the `BehaviorEvents` stream.
 - Add a `Parse(Harp.Behavior)` operator
@@ -24,6 +24,5 @@ While the `AnalogData` is a register that sends periodic message (~1kHz), other 
 :::workflow
 ![ParseDigitalInputState](~/workflows/ParseDigitalInputState.bonsai)
 :::
-
 
 > **_NOTE:_** In most situations listening to the `Event` propagated by the register is sufficient, and prefered, to keep track of the full state history of the device. Alternatively, one could also switch to a "pooling"-like strategy by using a `Timer` operator that periodically asks for a `Read` from the register.
