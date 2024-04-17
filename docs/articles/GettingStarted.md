@@ -13,4 +13,5 @@
 - [Device technical references](https://harp-tech.org/api/Harp.Behavior.html)
 - [Python data interface](https://harp-tech.org/articles/python.html)
 - [AIND Harp devices](https://allenneuraldynamics.github.io/Bonsai.AllenNeuralDynamics/harp_devices_spec/Harp_LicketySplit.html)
+- [Bonsai documentation](https://bonsai-rx.org/docs/articles/observables.html)
 - [Q&A, community, forum](https://github.com/orgs/harp-tech/discussions)
