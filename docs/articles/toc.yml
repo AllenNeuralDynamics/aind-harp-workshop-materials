@@ -16,3 +16,5 @@
     href: Commands.md
   - name: Logging
     href: Logging.md
+  - name: Data Interface
+    href: DataInterface.md

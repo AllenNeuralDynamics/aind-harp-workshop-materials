@@ -1,4 +1,4 @@
-# Ingesting data from Harp Device
+# Data Interface
 
 ## Collecting data
 
