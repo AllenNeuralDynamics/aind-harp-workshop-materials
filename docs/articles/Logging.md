@@ -50,7 +50,3 @@ All the previous patterns come together in the following workflow:
 :::
 
 Stay tuned for updates as, while the logging spec has been defined, the `Bonsai.Harp` library will soon be updated to include operators to more easily implement these patterns!
-
-## Benchmarking synchronization across boards
-
-

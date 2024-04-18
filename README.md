@@ -10,12 +10,10 @@ To install the Bonsai environment and bootstrap all dependencies, run `bonsai/se
 
 ### Create a Python virtual environment
 
-The examples will require the following packages: `harp-python, matplotlib, numpy, jupyter`
-
 Using a Python's native `venv`:
 
 ```cmd
 python -m venv .venv
 .venv\Scripts\activate
-pip install harp-python matplotlib numpy jupyter
+pip install harp-python
 ```
