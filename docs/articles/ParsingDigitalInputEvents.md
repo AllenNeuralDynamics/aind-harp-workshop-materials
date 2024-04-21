@@ -17,6 +17,11 @@ While the `AnalogData` is a register that sends periodic message (~1kHz), other 
       DI3: 0x8
 ```
 
+In other words, each bit of the integer value of the register represents the state of a specific line. If only `DI3` is currently `High`, we would get:
+`00001000` = `8` = `0x8`
+Conversely, if `DI3` and `DIPort0` are `High`, we would get:
+`00001001` = `9` = `0x9`
+
 - To extract the state of a specific line, use the `BitwiseAnd` operator and `Value` to the line you want to extract (e.g. `DI3`). To convert to a `Boolean`, use the `GreaterThan` operator with `Value` set to 0.
 - Because the state of `DigitalInputState` changes when ANY of the lines change, we tend to use the `DistinctUntilChanged` to only propagate the message if the state of the line of interest changes.
 - Finally, to trigger a certain behavior on a specific edge, we add a `Condition` operator to only allow `True` values to pass through. The behavior can easily bit inverted by adding a `BitWiseNot` operator before, or inside, the condition operator.
