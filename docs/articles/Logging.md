@@ -43,7 +43,7 @@ This file can be manually added to the root of the logged data folder, or it can
 ![LoggingMetadata](~/workflows/LoggingMetadata.bonsai)
 :::
 
-All the previous patterns come together in the following workflow:
+We can wrap all the previous patterns in a single grouped node:
 
 :::workflow
 ![CompleteLoggingPattern](~/workflows/CompleteLoggingPattern.bonsai)
