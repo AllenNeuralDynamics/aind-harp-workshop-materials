@@ -34,7 +34,8 @@ In most Harp devices you will find registers dedicated for configuration rather 
 ![OutputPulseEnable](~/workflows/OutputPulseEnable.bonsai)
 :::
 
-> **_NOTE:_** The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
+> [!NOTE]
+> The `BehaviorEvents`->`Take(1)` pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.
 
 ## Getting the timestamp of a Write message
 
@@ -51,7 +52,8 @@ While we know that the state of the line `DO3` is changing, we do not have acces
 ![ParseDigitalOutputTimestamped](~/workflows/ParseDigitalOutputTimestamped.bonsai)
 :::
 
-> **_NOTE:_** More documentation on how to manipulate timestamped messages can be found [here](https://harp-tech.org/articles/message-manipulation.html)
+> [!NOTE]
+> More documentation on how to manipulate timestamped messages can be found [here](https://harp-tech.org/articles/message-manipulation.html)
 
 ## Closing the loop with PWM
 
@@ -111,7 +113,8 @@ Now that we have the state of the input line, we need a way to close-loop it wit
 ![RoundTripDelayBenchmark](~/workflows/RoundTripDelayBenchmark.bonsai)
 :::
 
-> **_NOTE:_** The timestamps reported by Harp can be independently validated by probing the digital output line and calculating the time between each toggle. We have done this exercise in the past and found that the timestamps closely match.
+> [!NOTE]
+> The timestamps reported by Harp can be independently validated by probing the digital output line and calculating the time between each toggle. We have done this exercise in the past and found that the timestamps closely match.
 
 ![image](~/images/RoundTripDelayBenchmark.png)
 

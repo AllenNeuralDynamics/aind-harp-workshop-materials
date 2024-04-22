@@ -7,7 +7,8 @@
 - Modify the `FilterType` property to `Exclude` to filter out the messages from the specified register.
 - Check the output of `FilterRegister`
 
-> **_NOTE:_** Sometimes it may be easier to exclude registers using the generic API rather the device-specific one. This can be done using the `FilterRegister(Bonsai.Harp)` operator from the `Harp` package. This operator allows you to filter messages based on the register address number (e.g. `Address=44`), but it is otherwise interchangeable with the previous operator.
+> [!NOTE]
+> Sometimes it may be easier to exclude registers using the generic API rather the device-specific one. This can be done using the `FilterRegister(Bonsai.Harp)` operator from the `Harp` package. This operator allows you to filter messages based on the register address number (e.g. `Address=44`), but it is otherwise interchangeable with the previous operator.
 
 :::workflow
 ![FilteringMessages](~/workflows/FilteringMessages.bonsai)

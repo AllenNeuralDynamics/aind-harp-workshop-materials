@@ -25,4 +25,5 @@ While the `AnalogData` is a register that sends periodic message (~1kHz), other 
 ![ParseDigitalInputState](~/workflows/ParseDigitalInputState.bonsai)
 :::
 
-> **_NOTE:_** In most situations listening to the `Event` propagated by the register is sufficient, and prefered, to keep track of the full state history of the device. Alternatively, one could also switch to a "pooling"-like strategy by using a `Timer` operator that periodically asks for a `Read` from the register.
+> [!NOTE]
+> In most situations listening to the `Event` propagated by the register is sufficient, and prefered, to keep track of the full state history of the device. Alternatively, one could also switch to a "pooling"-like strategy by using a `Timer` operator that periodically asks for a `Read` from the register.
