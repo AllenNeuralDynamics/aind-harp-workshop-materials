@@ -5,6 +5,14 @@
 - Clone the [workshop repository](https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials).
 - Run `./bonsai/setup.cmd` to install Bonsai and its dependencies.
 
+## Following the examples
+
+Each example builds on the previous one, so it is recommended to follow them in the order presented in the table of contents.
+
+If you run into problems assembling the examples, you can copy-and-paste each snippet by clicking the clipboard icon (top-right corner) of each code block, and pasting it into the Bonsai workflow editor.
+
+If you have any questions or find any issues, please open an Issue on the [workshop repository](https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/issues)
+
 ## More documentation
 
 - [Harp Protocol](https://harp-tech.org/protocol/BinaryProtocol-8bit.html)

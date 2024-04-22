@@ -30,6 +30,9 @@ It is critical that the messages logged from the device are sufficient to recons
 ![LoggingWithDump](~/workflows/LoggingWithDump.bonsai)
 :::
 
+> [!IMPORTANT]
+> In your experiments, always validate that your logging routine has fully initialized before requesting a reading dump from the device. Failure to do so may result in missing data.
+
 ## Completing the logging pattern with the `device.yml` configuration file
 
 In order to use [`harp-python`](https://harp-tech.org/articles/python.html) data interface to its full extent, we need to provide a `device.yml` configuration file. This file will contain the device's register map, which is necessary to interpret the data logged from the device.
