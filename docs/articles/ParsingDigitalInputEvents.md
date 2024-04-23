@@ -1,5 +1,10 @@
 # Parsing a DigitalInput `Event`s
 
+
+Assemble the following example:
+![image](~/images/behavior_digital_input.png)
+
+
 While the `AnalogData` is a register that sends periodic message (~1kHz), other messages are triggered by non-period events. One example is data from the digital input lines. In the Harp Behavior board, register `DigitalInputState` emits an event when any of the digital input lines change state. It is important to note that similar to other devices (e.g. Open-Ephys acquisition boards), the state of all lines is multiplexed into a single integer (`U8`), where each bit represents the state (1/0) of each line. As a result, depending on the exact transformation you want to apply to the data, you may need to use the `Bitwise` operators to extract the state of each individual line:
 
 - Subscribe to the `BehaviorEvents` stream.

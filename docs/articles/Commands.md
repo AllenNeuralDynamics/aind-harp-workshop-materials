@@ -1,5 +1,8 @@
 # Sending `Command`s to the device
 
+Assemble the following example:
+![image](~/images/behavior_led.png)
+
 ## Change the state of the digital output line
 
 The Harp Behavior device has a set of four registers that can be used to control the state of the digital output lines: `OutputSet`, `OutputClear`, `OutputToggle` and `OutputState`. For simplicity, we will only use the `OutputSet` and `OutputClear` registers in this example. These registers are used to set or clear the state of a specific line, respectively. Similarly to the `DigitalInputState`, the value of this register also multiplexes the value of all the lines. First, we will set the state of line `DO3` to `High`:

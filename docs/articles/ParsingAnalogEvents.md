@@ -1,5 +1,9 @@
 # Parsing AnalogData `Event` messages
 
+Build the following circuit before start:
+
+![image](~/images/behavior_photoresistor.png)
+
 In a previous exampled we mentioned referred to `AnalogData` as a high-frequency event that carries the ADC readings. It is important to note that, as opposed to `FirmwareVersionHigh` which belongs to the core registers common across all Harp devices, `AnalogData` is a Harp Behavior specific register. As result, we must use the `Harp.Behavior` package to parse this register:
 
 - Subscribe to the `BehaviorEvents` stream.
