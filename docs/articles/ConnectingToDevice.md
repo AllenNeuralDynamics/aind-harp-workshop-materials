@@ -5,6 +5,9 @@
 - Add a `BehaviorSubject` source, and name it `BehaviorCommands`. A [Source Subject](https://bonsai-rx.org/docs/articles/subjects.html#source-subjects) of a given type can be added by right-clicking an operator of that type (e.g.`Device`) and selecting `Create Source` -> `BehaviorSubject`.
 - Run Bonsai and check check the output from the device.
 
+> [!TIP]
+> Any operator in Bonsai can be inspected during runtime by double-clicking on the corresponding node. This will display the output of the operator in a floating window.
+
 :::workflow
 ![ConnectionPattern](~/workflows/ConnectionPattern.bonsai)
 :::
