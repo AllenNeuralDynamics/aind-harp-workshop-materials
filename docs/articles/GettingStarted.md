@@ -3,7 +3,7 @@
 ## Getting started
 
 - Clone the [workshop repository](https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials).
-- Run `./bonsai/setup.cmd` to install Bonsai and its dependencies.
+- Run `setup.cmd` from the `./bonsai` directory to install Bonsai and its dependencies.
 
 ## Following the examples
 
