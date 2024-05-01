@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Tutorial </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Tutorial ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/GettingStarted.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="tutorial">Tutorial</h1>
+
+<h2 id="getting-started">Getting started</h2>
+<ul>
+<li>Clone the <a href="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials">workshop repository</a>.</li>
+<li>Run <code>setup.cmd</code> from the <code>./bonsai</code> directory to install Bonsai and its dependencies.</li>
+</ul>
+<h2 id="following-the-examples">Following the examples</h2>
+<p>Each example builds on the previous one, so it is recommended to follow them in the order presented in the table of contents.</p>
+<p>If you run into problems assembling the examples, you can copy-and-paste each snippet by clicking the clipboard icon (top-right corner) of each code block, and pasting it into the Bonsai workflow editor.</p>
+<p>If you have any questions or find any issues, please open an Issue on the <a href="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/issues">workshop repository</a></p>
+<h2 id="more-documentation">More documentation</h2>
+<ul>
+<li><a href="https://harp-tech.org/protocol/BinaryProtocol-8bit.html">Harp Protocol</a></li>
+<li><a href="https://harp-tech.org/protocol/Device.html">Harp Device</a></li>
+<li><a href="https://harp-tech.org/articles/intro.html">Using the Bonsai.Harp packages</a></li>
+<li><a href="https://harp-tech.org/api/Harp.Behavior.html">Device technical references</a></li>
+<li><a href="https://harp-tech.org/articles/python.html">Python data interface</a></li>
+<li><a href="https://allenneuraldynamics.github.io/Bonsai.AllenNeuralDynamics/harp_devices_spec/Harp_LicketySplit.html">AIND Harp devices</a></li>
+<li><a href="https://bonsai-rx.org/docs/articles/observables.html">Bonsai documentation</a></li>
+<li><a href="https://github.com/orgs/harp-tech/discussions">Q&amp;A, community, forum</a></li>
+</ul>
+<h2 id="workshop-kit-components">Workshop Kit Components</h2>
+<p>The following components are used in to assemble the circuit examples used in the workshop:</p>
+<ul>
+<li>4x, Wago In-Line Splice Connector, 221-2401, <a href="https://www.digikey.com/en/products/detail/wago-corporation/221-2401/16284533">link</a></li>
+<li>1x, 10K Ohm resistor, RNF14FTD10K0, <a href="https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNF14FTD10K0/17065960">link</a></li>
+<li>2x, 330 Ohm resistor, RNMF14FTC330R, <a href="https://www.digikey.com/en/products/detail/stackpole-electronics-inc/RNMF14FTC330R/2617332">link</a></li>
+<li>1x, Red/Green bidirectional LED, 5219459F, <a href="https://www.digikey.com/en/products/detail/dialight/5219459F/1832557">link</a></li>
+<li>1x, Photoresistor, NSL-6910, <a href="https://www.digikey.com/en/products/detail/advanced-photonix/NSL-6910/5039809">link</a></li>
+<li>1x, Hall Effect Door Sensor, 59135-030, <a href="https://www.digikey.com/en/products/detail/littelfuse-inc/59135-030/154459">link</a></li>
+<li>1x, Door Sensor Magnet, 57135-000, <a href="https://www.digikey.com/en/products/detail/littelfuse-inc/57135-000/43976">link</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/GettingStarted.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

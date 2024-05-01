@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Sending Commands to the device </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Sending Commands to the device ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/Commands.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="sending-commands-to-the-device">Sending <code>Command</code>s to the device</h1>
+
+<p>Assemble the following example:
+<img src="../images/behavior_led.png" alt="image"></p>
+<h2 id="change-the-state-of-the-digital-output-line">Change the state of the digital output line</h2>
+<p>The Harp Behavior device has a set of four registers that can be used to control the state of the digital output lines: <code>OutputSet</code>, <code>OutputClear</code>, <code>OutputToggle</code> and <code>OutputState</code>. For simplicity, we will only use the <code>OutputSet</code> and <code>OutputClear</code> registers in this example. These registers are used to set or clear the state of a specific line, respectively. Similarly to the <code>DigitalInputState</code>, the value of this register also multiplexes the value of all the lines. First, we will set the state of line <code>DO3</code> to <code>High</code>:</p>
+<ul>
+<li>Add a <code>KeyDown(Windows.Input)</code> operator and set the <code>Filter</code> property to a specific key (e.g. <code>1</code>).</li>
+<li>Add a <code>CreateMessage(Harp.Behavior)</code> operator in after the <code>KeyDown</code> operator.</li>
+<li>Select <code>OutputSetPayload</code> under <code>Payload</code>. Make sure the <code>MessageType</code> is set to <code>Write</code> since we will now be asking the device to change the value of one of its registers.</li>
+<li>In the property <code>OutputSet</code>, select the line you want to turn on (e.g. <code>DO3</code>).</li>
+<li>Replicate the previous steps to clear (turn off) the state of the line <code>DO3</code> by using the <code>OutputClearPayload</code> instead, and the <code>KeyDown</code> operator with a different key (e.g. <code>2</code>).</li>
+<li>Verify that you can turn On and Off the line <code>DO3</code> by pressing the keys <code>1</code> and <code>2</code>, respectively.</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/DigitalOutput.bonsai" alt="DigitalOutput"></p>
+</div>
+<h2 id="changing-the-pulse-mode-of-a-digital-output-line">Changing the pulse mode of a digital output line</h2>
+<p>In most Harp devices you will find registers dedicated for configuration rather than &quot;direct control&quot;. One example is the <code>OutputPulseEnable</code> register in the Harp Behavior board. This register is used when the user wants to pulse the line for a specific, pre-programmed, duration (e.g. opening a solenoid valve for exactly 10ms). To use this feature:</p>
+<ul>
+<li>Subscribe to the <code>BehaviorEvents</code> stream.</li>
+<li>Add a <code>Take</code> operator.</li>
+<li>Add <code>CreateMessage(Harp.Behavior)</code> operator in after the <code>Take</code> operator.</li>
+<li>Select <code>OutputPulseEnablePayload</code> under <code>Payload</code>. Make sure the <code>MessageType</code> is set to <code>Write</code>.</li>
+<li>Select the line you want to pulse (e.g. <code>DO3</code>), and add a <code>MulticastSubject</code> operator to send the message to the device.</li>
+<li>Add another <code>CreateMessage(Harp.Behavior)</code> operator after the <code>MulticastSubject</code> operator.</li>
+<li>Select <code>Pulse&lt;Pin&gt;Payload</code>, and set the value to the number of milliseconds you want this line to be high for on each pulse.</li>
+<li>Add a <code>MulticastSubject</code> operator to send the message to the device.</li>
+<li>Verify you see a pulse on the line <code>DO3</code> every time you press the key <code>1</code>.</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/OutputPulseEnable.bonsai" alt="OutputPulseEnable"></p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The <code>BehaviorEvents</code>-&gt;<code>Take(1)</code> pattern will wait for the first message from the device before sending any commands, guaranteeing that the device is ready to receive commands.</p>
+</div>
+<h2 id="getting-the-timestamp-of-a-write-message">Getting the timestamp of a Write message</h2>
+<p>While we know that the state of the line <code>DO3</code> is changing, we do not have access to WHEN this change is occurring. Remember that for each <code>Write</code> message issued by the computer as a command, a <code>Write</code> message reply should be sent back from the device. To grab the timestamp of the reply message:</p>
+<ul>
+<li>Subscribe to the <code>BehaviorEvents</code> stream.</li>
+<li>Add a <code>Parse(Harp.Behavior)</code> operator and set the <code>Register</code> to <code>TimestampedOutputSet</code>.</li>
+<li>Expose the <code>Value</code> and <code>Seconds</code> members of the output structure.</li>
+<li>Add a <code>BitwiseAnd(DO3)</code> and a <code>GreaterThan(0)</code> operator, after <code>Value</code> to extract the state of the line <code>DO3</code>.</li>
+<li>Add a <code>Condition</code> operator to only allow <code>True</code> values to pass through (since we are only interested in changes of <code>DO3</code>).</li>
+<li>Recover the initial timestamp of the message by using a <code>WithLatestFrom</code> operator connecting the output of <code>Condition</code> and <code>Seconds</code>.</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/ParseDigitalOutputTimestamped.bonsai" alt="ParseDigitalOutputTimestamped"></p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>More documentation on how to manipulate timestamped messages can be found <a href="https://harp-tech.org/articles/message-manipulation.html">here</a></p>
+</div>
+<h2 id="closing-the-loop-with-pwm">Closing the loop with PWM</h2>
+<p>Building on top of the Analog Data section, this example will walk you through how to achieve &quot;close-loop&quot; control between the duty-cycle of a closed-loop signal and the value of an ADC channel. This example also highlights one of the major advantages of having a computer in the loop: the ability to easily change the behavior of the system by changing the software.</p>
+<ul>
+<li><p>Configure <code>DO3</code> to be a PWM output by replicating the previous sections but instead of using the <code>Pulse&lt;Pin&gt;Payload</code>, configure the initial frequency (e.g. 500Hz) and duty cycle (e.g. 50%) of the PWM by using <code>PwmFrequency&lt;Pin&gt;Payload</code> and <code>PwmDutyCycle&lt;Pin&gt;Payload</code>.</p>
+</li>
+<li><p>Add a <code>KeyDown(Windows.Input)</code> operator and set the <code>Filter</code> property to a specific key (e.g. <code>Up</code>).</p>
+</li>
+<li><p>Add a <code>CreateMessage(Harp.Behavior)</code> operator in after the <code>KeyDown</code> operator, and set it to <code>PwmStart</code> and match the value to the pin you are using (e.g. <code>DO3</code>).</p>
+</li>
+<li><p>Repeat the previous steps but now set the <code>PwmStop</code> register to stop the PWM signal when the key <code>Down</code> is pressed.</p>
+</li>
+<li><p>Verify that you can start and stop the PWM signal.</p>
+</li>
+<li><p>Resume the pattern in from the Analog Data section. and publish the value of the ADC channel 0 via a <code>PublishSubject</code> named <code>Photodiode</code>.</p>
+</li>
+<li><p>Add a <code>Slice</code> operator to down-sample the signal to a more manageable update frequency (e.g. 100Hz) by setting the <code>Step</code> property to <code>10</code>. This is advised since the Behavior board is only spec'ed to run commands at 1kHz. Different hardware / functionality may require different sampling rates, so be sure to run tests before deploying the system.</p>
+</li>
+<li><p>Subscribe to the <code>Photodiode</code> stream and add a <code>Rescale</code> operator. According to the <a href="https://harp-tech.org/api/Harp.Behavior.html#registers">documentation of the Harp Behavior board</a>, the duty cycle register only accepts values between 1 and 99. As a result, we need to rescale the value of the ADC channel to match this range. Set the <code>Max</code> and <code>Min</code> properties to the maximum and minimum values of the Photodiode signal. Set <code>RangeMax</code> and <code>RangeMin</code> to 99 and 1, respectively. Finally, to ensure values are &quot;clipped&quot; to the range, set <code>RescaleType</code> to <code>Clamp</code>.</p>
+</li>
+<li><p>Finally, add a <code>Format(Harp.Behavior)</code> operator after the <code>Rescale</code> node. <code>Format</code>, similarly to <code>CreateMessage</code> is a Harp message constructor. It differs from <code>CreateMessage</code> in that it uses the incoming sequence (in this case the rescaled value of the ADC channel) to populate the message, instead of setting it as a property.</p>
+</li>
+<li><p>Add a <code>MulticastSubject</code> operator to send the message to the device.</p>
+</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/AdcToPwm.bonsai" alt="AdcToPwm"></p>
+</div>
+<h2 id="resetting-the-device">Resetting the device</h2>
+<p>In some cases, you may want to reset the device to its initial known state. The Harp protocol defines a core register that can be used to achieve this behavior:</p>
+<ul>
+<li>Add a <code>KeyDown(Windows.Input)</code> operator and set the <code>Filter</code> property to a specific key (e.g. <code>R</code>).</li>
+<li>Add a <code>CreateMessage(Bonsai.Harp)</code> operator in after the <code>KeyDown</code> operator.</li>
+<li>Select <code>ResetDevicePayload</code> in <code>Payload</code>, and <code>RestoreDefault</code> as the value of the payload.</li>
+<li>Add a <code>MulticastSubject</code> operator to send the message to the device.</li>
+<li>Run Bonsai. The board's led should briefly flash to indicate that the reset was successful.</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/ResetDevice.bonsai" alt="ResetDevice"></p>
+</div>
+<h2 id="benchmarking-round-trip-time">Benchmarking round-trip time</h2>
+<p>As a final example, we will show how to measure the <a href="https://en.wikipedia.org/wiki/Round-trip_delay">round-trip time</a> of a message sent to the device. This is useful to understand the latency of the closed-loop system and to ensure that the system is running as expected. The idea is to send a message to set the state of a digital output line, wait for the reply (t1) message, and invert the state of the line once this message is received, once again waiting for the second, corresponding, reply (t2). By calculating t2-t1, we will have the time it takes for a message to be sent from the device, processed by the computer and received again by the device:</p>
+<ul>
+<li>Connect <code>DO3</code> to <code>DI3</code> with a jumper cable.</li>
+<li>Read the timestamped values from the <code>DI3</code> pin using <code>DigitalInputState</code>:</li>
+<li>Subscribe to the <code>BehaviorEvents</code> stream. Add a <code>Parse(Harp.Behavior)</code> operator and set the <code>Register</code> to <code>TimestampedDigitalInputState</code>. Expose the <code>Value</code> and <code>Seconds</code> members of the output structure.</li>
+<li>Add a <code>BitwiseAnd(DI3)</code> and a <code>GreaterThan(0)</code> operator, after <code>Value</code> to extract the state of the line <code>DI3</code>. Add a <code>DistinctUntilChanged</code> operator to only propagate the message if the state of the line of interest changes. Publish this value to a <code>PublishSubject</code> named <code>DI3State</code>.</li>
+<li>Recover the timestamp of the message using a <code>WithLatestFrom</code> operator connecting the output of <code>DistinctUntilChanged</code> and <code>Seconds</code>.</li>
+<li>Add a <code>Difference</code> operator to calculate the time between the two messages (i.e. <code>t2-t1</code>).</li>
+</ul>
+<p>Now that we have the state of the input line, we need a way to close-loop it with the output line.</p>
+<ul>
+<li>Subscribe to the <code>DI3State</code> stream;</li>
+<li>Make two branches from this stream, to set-up a <code>if-else</code>-like statement.</li>
+<li>To the first branch, add a <code>Condition</code> that will take care of the case where the state of the input line is <code>High</code>. Add a <code>CreateMessage(Harp.Behavior)</code> operator and set it to <code>OutputClearPayload</code> to turn off the line <code>DO3</code>.</li>
+<li>To the second branch, add a <code>BitWiseNot</code> followed by a <code>Condition</code> operator to take care of the case where the state of the input line is <code>Low</code>. Add a <code>CreateMessage(Harp.Behavior)</code> operator and set it to <code>OutputSetPayload</code> to turn on the line <code>DO3</code>.</li>
+<li>Join the two branches with a <code>Merge</code> operator, and propagate the message to the device using a <code>MulticastSubject</code>.</li>
+<li>Run the workflow and check the output of the <code>Difference</code> stream.</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/RoundTripDelayBenchmark.bonsai" alt="RoundTripDelayBenchmark"></p>
+</div>
+<div class="NOTE">
+<h5>Note</h5>
+<p>The timestamps reported by Harp can be independently validated by probing the digital output line and calculating the time between each toggle. We have done this exercise in the past and found that the timestamps closely match.</p>
+</div>
+<p><img src="../images/RoundTripDelayBenchmark.png" alt="image"></p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th style="text-align: right;">Mean[μs]</th>
+<th style="text-align: right;">Std[μs]</th>
+<th style="text-align: right;">Min[μs]</th>
+<th style="text-align: right;">Max[μs]</th>
+<th style="text-align: right;">1%[μs]</th>
+<th style="text-align: right;">99%[μs]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Oscilloscope</td>
+<td style="text-align: right;">1972.1</td>
+<td style="text-align: right;">174.1</td>
+<td style="text-align: right;">985.0</td>
+<td style="text-align: right;">4002.0</td>
+<td style="text-align: right;">991.0</td>
+<td style="text-align: right;">2019.0</td>
+</tr>
+<tr>
+<td>Harp</td>
+<td style="text-align: right;">1972.1</td>
+<td style="text-align: right;">174.0</td>
+<td style="text-align: right;">959.9</td>
+<td style="text-align: right;">4000.2</td>
+<td style="text-align: right;">991.8</td>
+<td style="text-align: right;">2016.1</td>
+</tr>
+<tr>
+<td>CPU</td>
+<td style="text-align: right;">1971.7</td>
+<td style="text-align: right;">171.9</td>
+<td style="text-align: right;">576.0</td>
+<td style="text-align: right;">4057.0</td>
+<td style="text-align: right;">1011.0</td>
+<td style="text-align: right;">2240.0</td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/Commands.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

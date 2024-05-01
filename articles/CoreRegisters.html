@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Core Registers </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Core Registers ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/CoreRegisters.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="core-registers">Core Registers</h1>
+
+<h2 id="reading-the-firmware-version-using-the-low-level-api">Reading the firmware version using the low-level API</h2>
+<ul>
+<li>Each Harp device has a core register that contains the firmware version flashed on the board. An easy way to check what is the Major version of the firmware is to read from this register. <a href="https://harp-tech.org/protocol/Device.html#table---list-of-available-common-registers">This register follows the following structure</a>:</li>
+</ul>
+<pre><code class="lang-yml">  FirmwareVersionHigh:
+    address: 6
+    type: U8
+    access: Read
+</code></pre>
+<p>To read from this register, we need to create a <code>Read</code>-type message to this register:</p>
+<ul>
+<li>Add a <code>CreateMessage(Bonsai.Harp)</code> operator</li>
+<li>Select <code>CreateMessagePayload</code> under <code>Payload</code>. This will allow us to specify all the fields of the Harp message.</li>
+<li>Populate the properties <code>MessageType</code>, <code>Address</code> and <code>PayloadType</code> with the register information above.</li>
+<li>In several cases we will want to trigger the reading of the register with some other event. For debugging, one useful trick is to use <code>KeyDown(Windows.Input)</code> operator that sends a notification when a key is pressed. To prevent sporadic triggers set the <code>Filter</code> property to a specific key (e.g. <code>1</code>).</li>
+<li>Connect this operator to the <code>CreateMessage</code> operator.</li>
+<li>In 3, we used <code>SubjectSubject</code> to create a &quot;one-to-many&quot; pattern (i.e. one <code>Device</code> source to two parallel <code>FilterMessage</code> operators). When sending commands to a device we usually want to create a &quot;many-to-one&quot; pattern instead. This can be done by using the <code>MulticastSubject</code> operator with the <code>BehaviorCommands</code> as the target subject.</li>
+<li>Add a <code>MulticastSubject</code> operator after the <code>CreateMessage</code> operator.</li>
+<li>Run Bonsai and click <code>1</code> to trigger the reading of the firmware version. What do you see in the filtered device output?</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/CreateRawMessageFirmwareHigh.bonsai" alt="CreateRawMessageFirmwareHigh"></p>
+</div>
+<h2 id="reading-the-firmware-version-using-the-abstracted-api">Reading the firmware version using the abstracted API</h2>
+<ul>
+<li>The ability to manipulator &quot;raw&quot; Harp messages is very useful for debugging new devices. However, for most applications, we will want to use the abstracted API instead of having to know the register specification as in the previous point:</li>
+<li>Add a <code>CreateMessage(Bonsai.Harp)</code> operator</li>
+<li>Select <code>FirmwareVersionHigh</code> under <code>Payload</code>. This change will automatically populate the <code>Address</code> and <code>PayloadType</code> to match the select register. You will still need to assign a <code>MessageType</code>, in this case, <code>Read</code>.</li>
+<li>Re-run the previous example using this operator instead.</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/CreateApiMessageFirmwareHigh.bonsai" alt="CreateApiMessageFirmwareHigh"></p>
+</div>
+<h2 id="parsing-the-message-payload">Parsing the message payload</h2>
+<ul>
+<li>After the last step, you should see a message from the register <code>FirmwareVersionHigh</code>. However, we have yet to parse the message payload to see the actual firmware version.</li>
+<li>Replicating the previous steps, we will start by learning how to parse the payload using the low-level API:
+<ul>
+<li>Add a <code>Parse(Bonsai.Harp)</code>. This operator will not only parse the Harp Message payload to the specified type but also filter out messages that do not match the specified parsing pattern (e.g. other registers).</li>
+<li>Assign the properties using the same values from the previous example.</li>
+</ul>
+</li>
+<li>Once again, we can also use the abstracted API to simplify the parsing process:
+<ul>
+<li>Add a <code>Parse(Bonsai.Harp)</code> operator</li>
+<li>Select <code>FirmwareVersionHigh</code> under <code>Payload</code></li>
+<li>Re-run the previous example using this operator instead.</li>
+</ul>
+</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/ParseMessageFirmwareHigh.bonsai" alt="ParseMessageFirmwareHigh"></p>
+</div>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/CoreRegisters.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

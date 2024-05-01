@@ -1,0 +1,70 @@
+<?xml version="1.0" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"[
+<!ENTITY E12 'M 31.179 5.2 C 34.9985 11.0918 34.9814 18.682 31.13552 24.557 '><!ENTITY E2 'matrix(1.00 0.00 0.00 1.00 84.00 4.00 ) '><!ENTITY E5 'stroke:rgb(255,255,255);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:2.5;stroke-linejoin:miter;'><!ENTITY E6 'stroke:none;opacity:1;fill:rgb(255,255,255);'><!ENTITY E4 'M 11.061 10.763 C 11.061 9.349799 12.2452 7.7226 13.7798 7.4008 15.4144 6.98898 17.2874 7.88198 17.9084 9.4683 18.47393 10.8026 17.97233 12.4332 16.8453 13.3125 16.16579 13.95364 15.1393 14.28144 14.7641 15.2029 14.48171 16.1142 14.56073 17.1532 14.56319 18.0326 '><!ENTITY E13 'stroke:rgb(169,169,169);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:2;stroke-linejoin:miter;'><!ENTITY E16 'M 4.4028 13 4.93347 11.3266 C 6.15637 11.7667 7.04467 12.1477 7.598371 12.4698 7.45224 11.0476 7.37533 10.0696 7.36764 9.5352 L 9.040441 9.5352 C 9.017365 10.3131 8.92891 11.2873 8.775101 12.4581 9.567261 12.0495 10.4748 11.6723 11.4977 11.3266 L 12.02837 13 C 11.05162 13.3302 10.09407 13.5502 9.155771 13.6601 9.624911 14.0766 10.28637 14.819 11.14007 15.8877 L 9.755671 16.8894 C 9.30959 16.2687 8.782761 15.4241 8.175171 14.3554 7.606041 15.4633 7.106171 16.308 6.675471 16.8894 L 5.314171 15.8877 C 6.206311 14.7642 6.844671 14.0216 7.229171 13.6601 6.237041 13.4637 5.294871 13.2437 4.402771 13 z '><!ENTITY E21 'matrix(1.00 0.00 0.00 1.00 4.00 84.00 ) '><!ENTITY E14 'matrix(1.00 0.00 0.00 1.00 4.00 4.00 ) '><!ENTITY E18 'M 11.656 8.2 11.99975 8.7 16.31225 14.7937 11.65605 21.4187 11.28105 21.9187 14.74985 21.9187 14.8436 21.7624 17.9998 17.0124 18.46855 17.7 21.15605 21.7624 21.2498 21.9187 24.7498 21.9187 24.40605 21.4187 19.65605 14.6687 24.06225 8.699997 24.406 8.199997 20.9998 8.199997 20.90605 8.324997 18.68725 11.4187 C 18.46251 11.7285 18.22333 12.1062 17.9685 12.4812 17.77046 12.1547 17.58677 11.8424 17.31225 11.4187 L 15.28105 8.356197 15.1873 8.199997 11.6561 8.199997 z '><!ENTITY E1 'stroke:rgb(169,169,169);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:1;stroke-linejoin:miter;'><!ENTITY E3 'stroke:none;opacity:1;fill:rgb(238,192,75);'><!ENTITY E15 'stroke:none;opacity:1;fill:rgb(91,178,126);'><!ENTITY E17 'stroke:none;fill-rule:evenodd;opacity:1;fill:rgb(255,255,255);'><!ENTITY E8 'matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) '><!ENTITY E10 'matrix(1.00 0.00 0.00 1.00 84.00 84.00 ) '>
+]>
+<svg width="156.2243" height="146.6504" id="SvgGdi_output" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <style>text { fill: #000; } @media (prefers-color-scheme: dark) { text { fill: #eee; } }</style>
+  <rect id="background" height="100.00%" style="fill:none;" width="100.00%" y="0.00" x="0.00" />
+  <g style="shape-rendering:auto;" id="root_group">
+    <line y1="19.00" style="stroke:rgb(169,169,169);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:1;stroke-linejoin:miter;" id="2" x2="80.00" y2="19.00" x1="38.00" />
+    <line y1="99.00" style="stroke:rgb(169,169,169);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:1;stroke-linejoin:miter;" id="3" x2="80.00" y2="99.00" x1="38.00" />
+    <ellipse id="36" cy="15.00" cx="15.00" transform="matrix(1.00 0.00 0.00 1.00 84.00 4.00 ) " rx="15.00" ry="15.00" style="stroke:none;opacity:1;fill:rgb(238,192,75);" />
+    <path d="M 11.061 10.763 C 11.061 9.349799 12.2452 7.7226 13.7798 7.4008 15.4144 6.98898 17.2874 7.88198 17.9084 9.4683 18.47393 10.8026 17.97233 12.4332 16.8453 13.3125 16.16579 13.95364 15.1393 14.28144 14.7641 15.2029 14.48171 16.1142 14.56073 17.1532 14.56319 18.0326 " style="stroke:rgb(255,255,255);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:2.5;stroke-linejoin:miter;" transform="matrix(1.00 0.00 0.00 1.00 84.00 4.00 ) " id="40" />
+    <ellipse id="41" cy="21.60" cx="14.68" transform="matrix(1.00 0.00 0.00 1.00 84.00 4.00 ) " rx="1.81" ry="1.81" style="stroke:none;opacity:1;fill:rgb(255,255,255);" />
+    <text id="42" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="84.00px" y="39.00px" style="stroke:none;clip-path:url(#44_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
+      <tspan dy="8.25pt" id="46">Behavior.</tspan>
+    </text>
+    <text id="48" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="84.00px" y="51.45px" style="stroke:none;clip-path:url(#50_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
+      <tspan dy="8.25pt" id="52">AnalogData</tspan>
+    </text>
+    <ellipse id="54" cy="15.00" cx="15.00" transform="matrix(1.00 0.00 0.00 1.00 84.00 84.00 ) " rx="15.00" ry="15.00" style="stroke:none;opacity:1;fill:rgb(238,192,75);" />
+    <path d="M 11.061 10.763 C 11.061 9.349799 12.2452 7.7226 13.7798 7.4008 15.4144 6.98898 17.2874 7.88198 17.9084 9.4683 18.47393 10.8026 17.97233 12.4332 16.8453 13.3125 16.16579 13.95364 15.1393 14.28144 14.7641 15.2029 14.48171 16.1142 14.56073 17.1532 14.56319 18.0326 " style="stroke:rgb(255,255,255);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:2.5;stroke-linejoin:miter;" transform="matrix(1.00 0.00 0.00 1.00 84.00 84.00 ) " id="55" />
+    <ellipse id="56" cy="21.60" cx="14.68" transform="matrix(1.00 0.00 0.00 1.00 84.00 84.00 ) " rx="1.81" ry="1.81" style="stroke:none;opacity:1;fill:rgb(255,255,255);" />
+    <text id="57" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="84.00px" y="119.00px" style="stroke:none;clip-path:url(#59_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
+      <tspan dy="8.25pt" id="61">FilterRegister</tspan>
+    </text>
+    <path d="M 31.179 5.2 C 34.9985 11.0918 34.9814 18.682 31.13552 24.557 " style="stroke:rgb(169,169,169);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:2;stroke-linejoin:miter;" transform="matrix(1.00 0.00 0.00 1.00 4.00 4.00 ) " id="66" />
+    <ellipse id="67" cy="15.00" cx="15.00" transform="matrix(1.00 0.00 0.00 1.00 4.00 4.00 ) " rx="15.00" ry="15.00" style="stroke:none;opacity:1;fill:rgb(91,178,126);" />
+    <path d="M 4.4028 13 4.93347 11.3266 C 6.15637 11.7667 7.04467 12.1477 7.598371 12.4698 7.45224 11.0476 7.37533 10.0696 7.36764 9.5352 L 9.040441 9.5352 C 9.017365 10.3131 8.92891 11.2873 8.775101 12.4581 9.567261 12.0495 10.4748 11.6723 11.4977 11.3266 L 12.02837 13 C 11.05162 13.3302 10.09407 13.5502 9.155771 13.6601 9.624911 14.0766 10.28637 14.819 11.14007 15.8877 L 9.755671 16.8894 C 9.30959 16.2687 8.782761 15.4241 8.175171 14.3554 7.606041 15.4633 7.106171 16.308 6.675471 16.8894 L 5.314171 15.8877 C 6.206311 14.7642 6.844671 14.0216 7.229171 13.6601 6.237041 13.4637 5.294871 13.2437 4.402771 13 z " style="stroke:none;fill-rule:evenodd;opacity:1;fill:rgb(255,255,255);" transform="matrix(1.00 0.00 0.00 1.00 4.00 4.00 ) " id="71" />
+    <path d="M 11.656 8.2 11.99975 8.7 16.31225 14.7937 11.65605 21.4187 11.28105 21.9187 14.74985 21.9187 14.8436 21.7624 17.9998 17.0124 18.46855 17.7 21.15605 21.7624 21.2498 21.9187 24.7498 21.9187 24.40605 21.4187 19.65605 14.6687 24.06225 8.699997 24.406 8.199997 20.9998 8.199997 20.90605 8.324997 18.68725 11.4187 C 18.46251 11.7285 18.22333 12.1062 17.9685 12.4812 17.77046 12.1547 17.58677 11.8424 17.31225 11.4187 L 15.28105 8.356197 15.1873 8.199997 11.6561 8.199997 z " style="stroke:none;fill-rule:evenodd;opacity:1;fill:rgb(255,255,255);" transform="matrix(1.00 0.00 0.00 1.00 4.00 4.00 ) " id="72" />
+    <text id="73" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="4.00px" y="39.00px" style="stroke:none;clip-path:url(#75_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
+      <tspan dy="8.25pt" id="77">Behavior</tspan>
+    </text>
+    <text id="79" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="4.00px" y="51.45px" style="stroke:none;clip-path:url(#81_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
+      <tspan dy="8.25pt" id="83">Events</tspan>
+    </text>
+    <path d="M 31.179 5.2 C 34.9985 11.0918 34.9814 18.682 31.13552 24.557 " style="stroke:rgb(169,169,169);fill:none;stroke-linecap:butt;stroke-miterlimit:9;opacity:1;stroke-width:2;stroke-linejoin:miter;" transform="matrix(1.00 0.00 0.00 1.00 4.00 84.00 ) " id="85" />
+    <ellipse id="86" cy="15.00" cx="15.00" transform="matrix(1.00 0.00 0.00 1.00 4.00 84.00 ) " rx="15.00" ry="15.00" style="stroke:none;opacity:1;fill:rgb(91,178,126);" />
+    <path d="M 4.4028 13 4.93347 11.3266 C 6.15637 11.7667 7.04467 12.1477 7.598371 12.4698 7.45224 11.0476 7.37533 10.0696 7.36764 9.5352 L 9.040441 9.5352 C 9.017365 10.3131 8.92891 11.2873 8.775101 12.4581 9.567261 12.0495 10.4748 11.6723 11.4977 11.3266 L 12.02837 13 C 11.05162 13.3302 10.09407 13.5502 9.155771 13.6601 9.624911 14.0766 10.28637 14.819 11.14007 15.8877 L 9.755671 16.8894 C 9.30959 16.2687 8.782761 15.4241 8.175171 14.3554 7.606041 15.4633 7.106171 16.308 6.675471 16.8894 L 5.314171 15.8877 C 6.206311 14.7642 6.844671 14.0216 7.229171 13.6601 6.237041 13.4637 5.294871 13.2437 4.402771 13 z " style="stroke:none;fill-rule:evenodd;opacity:1;fill:rgb(255,255,255);" transform="matrix(1.00 0.00 0.00 1.00 4.00 84.00 ) " id="87" />
+    <path d="M 11.656 8.2 11.99975 8.7 16.31225 14.7937 11.65605 21.4187 11.28105 21.9187 14.74985 21.9187 14.8436 21.7624 17.9998 17.0124 18.46855 17.7 21.15605 21.7624 21.2498 21.9187 24.7498 21.9187 24.40605 21.4187 19.65605 14.6687 24.06225 8.699997 24.406 8.199997 20.9998 8.199997 20.90605 8.324997 18.68725 11.4187 C 18.46251 11.7285 18.22333 12.1062 17.9685 12.4812 17.77046 12.1547 17.58677 11.8424 17.31225 11.4187 L 15.28105 8.356197 15.1873 8.199997 11.6561 8.199997 z " style="stroke:none;fill-rule:evenodd;opacity:1;fill:rgb(255,255,255);" transform="matrix(1.00 0.00 0.00 1.00 4.00 84.00 ) " id="88" />
+    <text id="89" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="4.00px" y="119.00px" style="stroke:none;clip-path:url(#91_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
+      <tspan dy="8.25pt" id="93">Behavior</tspan>
+    </text>
+    <text id="95" transform="matrix(1.00 0.00 0.00 1.00 0.00 0.00 ) " x="4.00px" y="131.45px" style="stroke:none;clip-path:url(#97_text_clipper);font-family:Microsoft Sans Serif;font-size:8.25pt;opacity:1;">
+      <tspan dy="8.25pt" id="99">Events</tspan>
+    </text>
+  </g>
+  <defs id="clips_hatches_and_gradients">
+    <clipPath id="44_text_clipper">
+      <rect x="84.00" y="39.00" width="62.94" height="27.65" id="45" />
+    </clipPath>
+    <clipPath id="50_text_clipper">
+      <rect x="84.00" y="51.45" width="62.94" height="27.65" id="51" />
+    </clipPath>
+    <clipPath id="59_text_clipper">
+      <rect x="84.00" y="119.00" width="71.22" height="13.83" id="60" />
+    </clipPath>
+    <clipPath id="75_text_clipper">
+      <rect x="4.00" y="39.00" width="48.45" height="27.65" id="76" />
+    </clipPath>
+    <clipPath id="81_text_clipper">
+      <rect x="4.00" y="51.45" width="48.45" height="27.65" id="82" />
+    </clipPath>
+    <clipPath id="91_text_clipper">
+      <rect x="4.00" y="119.00" width="48.45" height="27.65" id="92" />
+    </clipPath>
+    <clipPath id="97_text_clipper">
+      <rect x="4.00" y="131.45" width="48.45" height="27.65" id="98" />
+    </clipPath>
+  </defs>
+</svg>

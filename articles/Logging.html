@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Logging </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Logging ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/Logging.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="">
+            
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="logging">Logging</h1>
+
+<h2 id="logging-messages-from-device">Logging messages from device</h2>
+<ul>
+<li>Subscribe to <code>BehaviorEvents</code></li>
+<li>Add a <code>GroupBy(Bonsai.Harp)</code> operator</li>
+<li>Add a <code>MessageWriter</code> operator. Set the <code>FileName</code> property to <code>MyDevice.harp/Behavior.bin</code></li>
+</ul>
+<div class="workflow"><p><img src="../workflows/Logging.bonsai" alt="Logging"></p>
+</div>
+<h2 id="ask-for-a-device-register-read-dump">Ask for a device register read-dump</h2>
+<p>It is critical that the messages logged from the device are sufficient to reconstruct its state history. For that to be true, we need to know the initial state of all registers. This can be asked via a special register in the protocol core: <a href="https://harp-tech.org/protocol/Device.html#r_operation_ctrl-u16--operation-mode-configuration"><code>OperationControl</code></a>. This register has a single bit that, when set, will trigger the device to send a dump all the values of all its registers.</p>
+<ul>
+<li>To the previous example, in a different branch:</li>
+<li>Add a <code>Timer</code> operator with its <code>DueTime</code> property set to 2 seconds. This will mimic the delayed start of an experiment.</li>
+<li>Add a <code>CreateMessage(Bonsai.Harp)</code> operator after the <code>Timer</code></li>
+<li>Select <code>OperationControlPayload</code> under <code>Payload</code>. Depending on your use case, you might want to change some of the settings, but we recommend:
+<ul>
+<li><code>DumpRegisters</code> set to <code>True</code> (Required for the dump)</li>
+<li><code>Heartbeat</code> set to <code>True</code> (Useful to know the device is still alive)</li>
+<li><code>MuteReplies</code> set to <code>False</code></li>
+<li><code>OperationLed</code> set to <code>True</code></li>
+<li><code>OperationMode</code> set to <code>Active</code></li>
+<li><code>VisualIndicator</code> set to <code>On</code></li>
+</ul>
+</li>
+<li>Add a <code>Multicast</code> operator to send the message to the device</li>
+</ul>
+<div class="workflow"><p><img src="../workflows/LoggingWithDump.bonsai" alt="LoggingWithDump"></p>
+</div>
+<div class="IMPORTANT">
+<h5>Important</h5>
+<p>In your experiments, always validate that your logging routine has fully initialized before requesting a reading dump from the device. Failure to do so may result in missing data.</p>
+</div>
+<h2 id="completing-the-logging-pattern-with-the-deviceyml-configuration-file">Completing the logging pattern with the <code>device.yml</code> configuration file</h2>
+<p>In order to use <a href="https://harp-tech.org/articles/python.html"><code>harp-python</code></a> data interface to its full extent, we need to provide a <code>device.yml</code> configuration file. This file will contain the device's register map, which is necessary to interpret the data logged from the device.</p>
+<p>This file can be manually added to the root of the logged data folder, or it can be saved in Bonsai:</p>
+<ul>
+<li>To the previous examples, in a different branch:</li>
+<li>Add a <code>DeviceMetadata(Harp.Behavior)</code> operator</li>
+<li>Add a <code>WriteAllText</code> operator to save the metadata to a file named <code>device.yml</code></li>
+</ul>
+<div class="workflow"><p><img src="../workflows/LoggingMetadata.bonsai" alt="LoggingMetadata"></p>
+</div>
+<p>We can wrap all the previous patterns in a single grouped node:</p>
+<div class="workflow"><p><img src="../workflows/CompleteLoggingPattern.bonsai" alt="CompleteLoggingPattern"></p>
+</div>
+<p>Stay tuned for updates as, while the logging spec has been defined, the <code>Bonsai.Harp</code> library will soon be updated to include operators to more easily implement these patterns!</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/AllenNeuralDynamics/aind-harp-workshop-materials/blob/main/docs/articles/Logging.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

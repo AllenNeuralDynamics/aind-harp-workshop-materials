@@ -1,0 +1,575 @@
+{
+  "source_base_path": "D:/a/aind-harp-workshop-materials/aind-harp-workshop-materials/docs",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Commands.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Commands.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/ConnectingToDevice.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/ConnectingToDevice.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/CoreRegisters.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/CoreRegisters.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/DataInterface.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/DataInterface.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/FilteringMessages.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/FilteringMessages.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/GettingStarted.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/GettingStarted.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/Logging.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/Logging.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/ParsingAnalogEvents.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/ParsingAnalogEvents.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/ParsingDigitalInputEvents.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/ParsingDigitalInputEvents.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        },
+        ".json": {
+          "relative_path": "articles/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "favicon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "full-logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "full-logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/RoundTripDelayBenchmark.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/RoundTripDelayBenchmark.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/_._",
+      "output": {
+        "resource": {
+          "relative_path": "images/_._"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/behavior_digital_input.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/behavior_digital_input.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/behavior_led.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/behavior_led.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/behavior_photoresistor.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/behavior_photoresistor.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "logo.svg",
+      "output": {
+        "resource": {
+          "relative_path": "logo.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/AdcToPwm.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/AdcToPwm.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/AdcToPwm.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/AdcToPwm.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/CompleteLoggingPattern.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/CompleteLoggingPattern.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/CompleteLoggingPattern.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/CompleteLoggingPattern.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ConnectionPattern.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ConnectionPattern.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ConnectionPattern.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ConnectionPattern.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/CreateApiMessageFirmwareHigh.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/CreateApiMessageFirmwareHigh.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/CreateApiMessageFirmwareHigh.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/CreateApiMessageFirmwareHigh.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/CreateRawMessageFirmwareHigh.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/CreateRawMessageFirmwareHigh.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/CreateRawMessageFirmwareHigh.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/CreateRawMessageFirmwareHigh.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/DigitalOutput.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/DigitalOutput.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/DigitalOutput.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/DigitalOutput.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/FilteringMessages.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/FilteringMessages.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/FilteringMessages.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/FilteringMessages.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/Logging.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/Logging.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/Logging.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/Logging.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/LoggingMetadata.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/LoggingMetadata.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/LoggingMetadata.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/LoggingMetadata.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/LoggingWithDump.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/LoggingWithDump.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/LoggingWithDump.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/LoggingWithDump.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/OutputPulseEnable.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/OutputPulseEnable.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/OutputPulseEnable.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/OutputPulseEnable.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseAnalogData.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseAnalogData.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseAnalogData.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseAnalogData.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseDigitalInputState.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseDigitalInputState.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseDigitalInputState.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseDigitalInputState.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseDigitalOutputTimestamped.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseDigitalOutputTimestamped.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseDigitalOutputTimestamped.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseDigitalOutputTimestamped.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseMessageFirmwareHigh.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseMessageFirmwareHigh.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ParseMessageFirmwareHigh.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ParseMessageFirmwareHigh.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ResetDevice.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ResetDevice.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/ResetDevice.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/ResetDevice.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/RoundTripDelayBenchmark.bonsai",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/RoundTripDelayBenchmark.bonsai"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/RoundTripDelayBenchmark.svg",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/RoundTripDelayBenchmark.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "workflows/_._",
+      "output": {
+        "resource": {
+          "relative_path": "workflows/_._"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}
